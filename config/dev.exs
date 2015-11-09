@@ -31,3 +31,11 @@ config :logger, :console, format: "[$level] $message\n"
 # Do not configure such in production as keeping
 # and calculating stacktraces is usually expensive.
 config :phoenix, :stacktrace_depth, 20
+
+config :pxmeocloud, OauthSettings,
+  client_id: System.get_env("OAUTH_CLIENT_ID"),
+  client_secret: System.get_env("OAUTH_CLIENT_SECRET"),
+  redirect_uri: "http://localhost:4000/auth/callback",
+  authorize_url: "https://disco.dev.sapo.pt/oauth2/authorize",
+  token_url: "https://disco.dev.sapo.pt/oauth2/token",
+  site: "https://api.disco.dev.sapo.pt"

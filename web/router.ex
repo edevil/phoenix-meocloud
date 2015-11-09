@@ -19,6 +19,14 @@ defmodule Pxmeocloud.Router do
     get "/", PageController, :index
   end
 
+  scope "/auth", Pxmeocloud do
+    pipe_through :browser
+
+    get "/", AuthController, :index
+    get "/callback", AuthController, :callback
+    delete "/logout", AuthController, :delete
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", Pxmeocloud do
   #   pipe_through :api
