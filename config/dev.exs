@@ -12,7 +12,7 @@ config :pxmeocloud, Pxmeocloud.Endpoint,
   code_reloader: true,
   cache_static_lookup: false,
   check_origin: false,
-  watchers: [node: ["node_modules/brunch/bin/brunch", "watch", "--stdin"]]
+  watchers: []
 
 # Watch static and templates for browser reloading.
 config :pxmeocloud, Pxmeocloud.Endpoint,
@@ -31,12 +31,3 @@ config :logger, :console, format: "[$level] $message\n"
 # Do not configure such in production as keeping
 # and calculating stacktraces is usually expensive.
 config :phoenix, :stacktrace_depth, 20
-
-# Configure your database
-config :pxmeocloud, Pxmeocloud.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
-  database: "pxmeocloud_dev",
-  hostname: "localhost",
-  pool_size: 10

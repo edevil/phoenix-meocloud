@@ -9,8 +9,6 @@ defmodule Pxmeocloud do
     children = [
       # Start the endpoint when the application starts
       supervisor(Pxmeocloud.Endpoint, []),
-      # Start the Ecto repository
-      worker(Pxmeocloud.Repo, []),
       # Here you could define other workers and supervisors as children
       # worker(Pxmeocloud.Worker, [arg1, arg2, arg3]),
     ]

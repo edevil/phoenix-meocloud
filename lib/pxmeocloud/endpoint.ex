@@ -33,7 +33,7 @@ defmodule Pxmeocloud.Endpoint do
   plug Plug.Session,
     store: :cookie,
     key: "_pxmeocloud_key",
-    signing_salt: "Y+/6EvjT"
+    signing_salt: "jQ8y468G"
 
   plug Pxmeocloud.Router
 end

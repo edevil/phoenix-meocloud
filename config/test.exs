@@ -8,12 +8,3 @@ config :pxmeocloud, Pxmeocloud.Endpoint,
 
 # Print only warnings and errors during test
 config :logger, level: :warn
-
-# Configure your database
-config :pxmeocloud, Pxmeocloud.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
-  database: "pxmeocloud_test",
-  hostname: "localhost",
-  pool: Ecto.Adapters.SQL.Sandbox
