@@ -7,10 +7,9 @@ defmodule Pxmeocloud.AuthController do
 
   def callback(conn, %{"code" => code}) do
   	token = MEOCloud.get_token!(code: code)
-
-  	OAuth2.AccessToken.get(token, "/1/Account/Info", [], [hackney: [:insecure]])
-  	|> inspect
-  	|> IO.puts
-  	redirect conn, to: "/"
+    conn
+    |> put_session(:oauth_token, token)
+    |> redirect to: page_path(conn, :index)
   end
+
 end

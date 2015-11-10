@@ -14,7 +14,7 @@ defmodule Pxmeocloud.Router do
   end
 
   scope "/", Pxmeocloud do
-    pipe_through :browser # Use the default browser stack
+    pipe_through :browser
 
     get "/", PageController, :index
   end
@@ -27,8 +27,4 @@ defmodule Pxmeocloud.Router do
     delete "/logout", AuthController, :delete
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", Pxmeocloud do
-  #   pipe_through :api
-  # end
 end
