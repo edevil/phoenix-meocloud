@@ -9,6 +9,14 @@ defmodule Pxmeocloud.PageController do
     render conn, "index.html"
   end
 
+  def finder(conn, %{"path" => path}) do
+    token = get_session(conn, :oauth_token)
+    {:ok, %{:body => %{"contents" => contents}}} = OAuth2.AccessToken.get(token, "/1/Metadata/meocloud#{path}", [], [hackney: [:insecure]])
+    Logger.debug('Dir #{path} has #{length contents} elements')
+    render conn, "finder.html", contents: contents
+  end
+  def finder(conn, _), do: finder(conn, %{"path" => "/"})
+
   defp enforce_auth(conn, _params) do
     token = get_session(conn, :oauth_token)
     if token do

@@ -17,6 +17,7 @@ defmodule Pxmeocloud.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/finder", PageController, :finder
   end
 
   scope "/auth", Pxmeocloud do
