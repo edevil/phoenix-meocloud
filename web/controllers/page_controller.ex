@@ -18,7 +18,9 @@ defmodule Pxmeocloud.PageController do
   def finder(conn, _), do: finder(conn, %{"path" => "/"})
 
   def delete(conn, %{"path" => path}) do
-    render conn, "index.html"
+    token = get_session(conn, :oauth_token)
+    {:ok, %{:status_code => 200}} = OAuth2.AccessToken.post(token, "/1/Fileops/Delete", %{"path" => path, "root" => "meocloud"}, [], [hackney: [:insecure]])
+    redirect conn, to: page_path(conn, :finder, "path": Path.dirname(path))
   end
 
   defp enforce_auth(conn, _params) do
