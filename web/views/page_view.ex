@@ -4,4 +4,5 @@ defmodule Pxmeocloud.PageView do
   def current_user_name(conn) do
     conn.assigns[:display_name]
   end
+
 end

@@ -18,6 +18,7 @@ defmodule Pxmeocloud.Router do
 
     get "/", PageController, :index
     get "/finder", PageController, :finder
+    delete "/delete", PageController, :delete
   end
 
   scope "/auth", Pxmeocloud do

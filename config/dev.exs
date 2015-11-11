@@ -12,7 +12,7 @@ config :pxmeocloud, Pxmeocloud.Endpoint,
   code_reloader: true,
   cache_static_lookup: false,
   check_origin: false,
-  watchers: []
+  watchers: [node: ["node_modules/brunch/bin/brunch", "watch", "--stdin"]]
 
 # Watch static and templates for browser reloading.
 config :pxmeocloud, Pxmeocloud.Endpoint,

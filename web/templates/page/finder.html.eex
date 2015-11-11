@@ -1,0 +1,22 @@
+<div class="jumbotron">
+  <h2>Olá <%= current_user_name @conn %></h2>
+  <p class="lead">A productive web framework that<br />does not compromise speed and maintainability.</p>
+</div>
+
+<%= if @current_path != "/" do %>
+  <a href="<%= page_path @conn, :finder, "path": Path.dirname(@current_path)%>">UP</a>
+<% end %>
+
+<ul>
+  <%= for file_data <- @contents do %>
+    <li>
+      <%= if file_data["is_dir"] do %>
+        <a href="<%= page_path @conn, :finder, "path": file_data["path"]%>"><%= file_data["path"] %></a>
+      <% else %>
+        <%= file_data["path"] %>
+      <% end %>
+      <%= link "Delete", to: page_path(@conn, :delete, "path": file_data["path"]), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+    </li>
+  <% end %>
+</ul>
+

@@ -11,11 +11,15 @@ defmodule Pxmeocloud.PageController do
 
   def finder(conn, %{"path" => path}) do
     token = get_session(conn, :oauth_token)
-    {:ok, %{:body => %{"contents" => contents}}} = OAuth2.AccessToken.get(token, "/1/Metadata/meocloud#{path}", [], [hackney: [:insecure]])
+    {:ok, %{:body => %{"contents" => contents}}} = OAuth2.AccessToken.get(token, URI.encode("/1/Metadata/meocloud#{path}", &(&1 == ?/)), [], [hackney: [:insecure]])
     Logger.debug('Dir #{path} has #{length contents} elements')
-    render conn, "finder.html", contents: contents
+    render conn, "finder.html", contents: contents, current_path: path
   end
   def finder(conn, _), do: finder(conn, %{"path" => "/"})
+
+  def delete(conn, %{"path" => path}) do
+    render conn, "index.html"
+  end
 
   defp enforce_auth(conn, _params) do
     token = get_session(conn, :oauth_token)
